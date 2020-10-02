@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="header-container groove">
+  <h1>FIND A RESTAURANT</h1>
+  <p class="header-text">Enter some keywords and press search to begin!</p>
+</div>
+
+<div class="container-fluid">
+
+  <div class="query-form">
+    <span name="form-title"><b> Search Filters </b></span><br><br>
+
+    <form method="POST" name="query-params" id="search" action="{% url 'restaurants' %}">
+
+      {% csrf_token %}
+      <div class="form-fields">
+        <label for="street">Street: </label>
+        <input type="text" id="street" name="street"><br><br>
+        <label for="county">County: </label>
+        <input type="text" id="county" name="county"><br><br>
+        <label for="zipcode">Zipcode: </label>
+        <input type="text" id="zipcode" name="zipcode"><br><br>
+        <label for="name">Name: </label>
+        <input type="text" id="name" name="name"><br><br>
+        <label for="cuisine">Cuisine: </label>
+        <input type="text" id="cuisine" name="cuisine"><br><br>
+        <label for="result-num">Limit: </label>
+        <input type="number" id='result-num' name="result-num" value="" placeholder="Default limit is 100">
+      </div>
+
+      <div class="search-btn">
+        <button class="s-btn" type="submit">Search</button>
+      </div>
+
+    </form>
+
+  </div>
+
+  <div class="query-container">
+    {{ query_string }}
+  </div>
+
+  <div class="result-container">
+    <p><b> Results: {{ result_num }} returned</b></p>
+    {{ df|safe }}
+  </div>
+
+</div>
+
+{% endblock %}
+
+
+
+
+{% block javascript %}
+<script type="text/javascript">
+
+</script>
+{% endblock %}
